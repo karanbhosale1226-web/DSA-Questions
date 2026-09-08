@@ -11,32 +11,30 @@
 class Solution {
 public:
     int getCount(ListNode* head){
-        int n=0;
         ListNode* temp=head;
+        int n=0;
         while(temp!=NULL){
             n++;
             temp=temp->next;
         }
         return n;
     }
-
     ListNode* swapNodes(ListNode* head, int k) {
         int n=getCount(head);
-        vector<int> arr(n);
-        ListNode* temp=head;
-        for(int i=0;i<n;i++){
-            arr[i]=temp->val;
-            temp=temp->next;
-        }
-        swap(arr[k-1],arr[n-k]);
-        temp=head;
         int i=0;
-        while(temp!=NULL){
-            temp->val=arr[i];
+        ListNode* first=head;
+        ListNode* second=head;
+        while(i<k-1){
+            first=first->next;
+
             i++;
-            temp=temp->next;
         }
+        i=0;
+        while(i<n-k){
+            second=second->next;
+            i++;
+        }
+        swap(first->val,second->val);
         return head;
-        
     }
 };
